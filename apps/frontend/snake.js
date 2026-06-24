@@ -5,6 +5,7 @@ var rows = 20;
 var cols = 20;
 var board;
 var context;
+var userScore;
 
 // Snake head
 var snakeX = blockSize * 15;
@@ -107,13 +108,17 @@ function update() {
 
     if (snakeX < 0 || snakeX >= cols*blockSize || snakeY < 0 || snakeY >= rows*blockSize){
         gameOver = true;
-        alert("Game Over! To play again Press F5.");
+        score();
+        alert("Game Over!\n\nYour score is: " + userScore + ".\n\nPress F5 to play again.");
+        
     }
 
     for (let i = 0; i < snakeBody.length; i++) {
         if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
             gameOver = true;
-            alert("Game Over! To play again Press F5.");
+            score();
+            alert("Game Over!\n\nYour score is: " + userScore + ".\n\nPress F5 to play again.");
+            
         }
     }
 
@@ -124,4 +129,7 @@ function placeFood() {
     foodY = Math.floor(Math.random() * rows) * blockSize
 }
 
+function score(){
+    userScore = snakeBody.length
+}
 
